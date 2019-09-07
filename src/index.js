@@ -1,12 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Games from "./components/Games";
+import Header from "./components/Header";
+import Streams from "./components/Streams";
+import GameStreams from "./components/GameStreams";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "shards-ui/dist/css/shards.min.css";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function App() {
+  return (
+    <Router>
+      <Header />
+      <Route exact path="/" component={Games} />
+      <Route exact path="/top-streams" component={Streams} />
+      <Route exact path="/game/:id" component={GameStreams} />
+    </Router>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
